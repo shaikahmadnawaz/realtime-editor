@@ -57,15 +57,18 @@ footer a {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  font-weight: bold;
 }
 
-.joinBtn {
+.joinBtn,
+.leaveBtn {
   background: #4aed88;
   width: 100px;
   margin-left: auto;
 }
 
-.joinBtn:hover {
+.joinBtn:hover,
+.leaveBtn:hover {
   background: #2b824c;
 }
 
@@ -86,4 +89,65 @@ footer a {
 footer a:hover {
   color: #368654;
   border-color: #368654;
+}
+
+.mainWrap {
+  display: grid;
+  /* The grid-template-columns property specifies the 
+    number (and the widths) of columns in a grid layout. */
+  grid-template-columns: 230px 1fr;
+  /*  Fr is a fractional unit and 
+    1fr is for 1 part of the available space. */
+  height: 100vh;
+}
+
+.aside {
+  background: #1c1e29;
+  padding: 16px;
+  color: #fff;
+  /* Here flex is used so that 
+  buttons can be pushed to down */
+  display: flex;
+  flex-direction: column;
+}
+
+.asideInner {
+  flex: 1;
+}
+
+.clientsList {
+  display: flex;
+  align-items: center;
+  /* it gives new line if content dosent fit in current line */
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userName {
+  margin-top: 10px;
+}
+
+.logo {
+  border-bottom: 1px solid #424242;
+}
+
+.logoImage {
+  height: 60px;
+}
+.leaveBtn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.CodeMirror {
+  min-height: calc(100vh-20px);
+  font-size: 20px;
+  line-height: 1.6;
+  padding-top: 20px;
 }

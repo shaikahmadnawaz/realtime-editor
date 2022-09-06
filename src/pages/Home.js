@@ -1,7 +1,10 @@
 // rafce - react arrow function component export
 import React, { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const navigate = useNavigate();
   const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState("");
   const createNewRoom = (e) => {
@@ -10,6 +13,24 @@ const Home = () => {
     e.preventDefault();
     const id = uuidV4();
     setRoomId(id);
+    toast.success("Created a new room");
+  };
+  const joinRoom = () => {
+    if (!roomId || !userName) {
+      toast.error("ROOM ID & Username is required");
+      return;
+    }
+    // redirect
+    navigate(`/editor/${roomId}`, {
+      state: {
+        userName,
+      },
+    });
+  };
+  const handleInputEnter = (e) => {
+    if (e.code === "Enter") {
+      joinRoom();
+    }
   };
   return (
     <div className="homePageWrapper">
@@ -28,6 +49,8 @@ const Home = () => {
             // we can change Id manually by doing like this
             onChange={(e) => setRoomId(e.target.value)}
             value={roomId}
+            // By pressing enter key we can login
+            onKeyUp={handleInputEnter}
           />
           <input
             type="text"
@@ -35,8 +58,11 @@ const Home = () => {
             placeholder="USER NAME"
             onChange={(e) => setUserName(e.target.value)}
             value={userName}
+            onKeyUp={handleInputEnter}
           />
-          <button className="btn joinBtn">Join</button>
+          <button className="btn joinBtn" onClick={joinRoom}>
+            Join
+          </button>
           <span className="createInfo">
             {/* non-breaking space: &nbsp; A non-breaking space is a space 
                 that will not break into a new line. */}
