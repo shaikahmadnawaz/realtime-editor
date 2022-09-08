@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
-import ACTIONS from "../Actions";
+import ACTIONS from "../server/Actions";
 import Client from "../components/Client";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
@@ -16,6 +16,8 @@ const EditorPage = () => {
   const socketRef = useRef(null);
   const location = useLocation();
   const reactNavigator = useNavigate();
+  const { roomId } = useParams();
+  console.log(params);
   useEffect(() => {
     const init = async () => {
       /* The keyword await makes JavaScript wait until 
@@ -30,6 +32,7 @@ const EditorPage = () => {
         console.log("socket error", e);
         toast.error("Socket connection failed, try again later.");
         reactNavigator("/");
+        // We are redirecting to home page if we found any errors
       }
       socketRef.current.emit(ACTIONS.JOIN, {
         roomId,
@@ -46,6 +49,9 @@ const EditorPage = () => {
     { socketId: 2, userName: "Awaz" },
     { socketId: 3, userName: "Hawaz" },
   ]);
+  if (!location.state) {
+    return <Navigate />;
+  }
   return (
     <div className="mainWrap">
       <div className="aside">
