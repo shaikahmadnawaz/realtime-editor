@@ -48,6 +48,8 @@ footer a {
   border: none;
   margin-bottom: 14px;
   background: #eee;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .btn {
@@ -98,7 +100,6 @@ footer a:hover {
   grid-template-columns: 230px 1fr;
   /*  Fr is a fractional unit and 
     1fr is for 1 part of the available space. */
-  height: 100vh;
 }
 
 .aside {
@@ -127,6 +128,7 @@ footer a:hover {
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-weight: bold;
 }
 
 .userName {
@@ -135,6 +137,7 @@ footer a:hover {
 
 .logo {
   border-bottom: 1px solid #424242;
+  padding-bottom: 10px;
 }
 
 .logoImage {
